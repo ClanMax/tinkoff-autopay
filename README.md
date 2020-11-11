@@ -2,6 +2,8 @@ Small library which help you to use methods from [Tinkoff API Documentation](htt
 
 It was made for Laravel 7.0, but basically it should work almost everywhere even not only with Laravel apps.
 
+It's using some of [Laravel-Tinkoff](https://github.com/kenvel/laravel-tinkoff) functions inside.
+
 ## What it's doing
 
 Just basic things. For example, we can:
