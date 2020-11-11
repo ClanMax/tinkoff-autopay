@@ -105,7 +105,7 @@ class TinkoffAutopay extends {
     return $url;
   }
 
-  private function sendRequest() {
+  private function sendRequest($path,  array $args) {
     $args['TerminalKey'] = $this->terminal_key;
     $args['Token']       = $this->generateToken($args);
     $args = json_encode($args);
@@ -132,9 +132,7 @@ class TinkoffAutopay extends {
           return false;
           }
           else {
-            $this->payment_id       = @$json->PaymentId;
-            $this->payment_url      = @$json->PaymentURL;
-            $this->payment_status   = @$json->Status;
+            $this->responce_messages   = @$this->MessageResponse();
 
             return true;
           }
@@ -194,4 +192,19 @@ class TinkoffAutopay extends {
     }
     return false;
   }
+
+  private function MessageResponse() {
+    $response = json_decode($this->response, true);
+
+    $data = [
+      'Success' => @$response['Success'],
+      'CardId' => @$response['CardId'],
+      'Pan' => @$response['Pan'], // card number
+      'Status' => @$response['Status'],
+      'RebillId' => @$response['RebillId'],
+      'CardType' => @$response['CardType'],
+      'ExpDate' => @$response['ExpDate'],
+    ];
+  }
+
 }
