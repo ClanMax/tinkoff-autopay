@@ -8,7 +8,7 @@ namespace ClanMax;
 * Documentation https://oplata.tinkoff.ru/landing/develop/documentation
 *
 * @link   https://github.com/ClanMax/tinkoff-autopay
-* @version 0.01
+* @version 0.02
 * @author ClanMax <me@clanmax.ru>
 */
 class TinkoffAutopay {
@@ -36,6 +36,11 @@ class TinkoffAutopay {
     $this->initURL();
   }
 
+  /**
+   * Using method Init. Documentation https://oplata.tinkoff.ru/develop/api/payments/init-description/
+   * @param array $payment Basic information about payment
+   * @param array $items   Information about what user wanna buy
+   */
   public function Init(array $payment, array $items){
     $item_name_max_lenght = 64;
     $amount_multiplicator = 100;
