@@ -47,3 +47,25 @@ use ClanMax\TinkoffAutopay;
 ## How to use
 
 Make sure you already have Terminal Key and Terminal Password from you bank account. For using `FinishAuthorize` method you can get public key when switch you terminal working mode to Mobile application.
+
+### Add new client
+
+### Initial payment
+
+Make `POST` request to `Init` with two additional parameters:
+
+```json
+{
+"Recurrent": "Y",
+"CustomerKey": "clanmax"
+}
+```
+
+Where `CustomerKey` name of already added client and `Recurrent` just with `Y`
+
+### Charge money
+
+Few steps:
+
+1. Make `POST` request to Init, but without `Recurrent` and `CustomerKey`
+2. Grab `PaymentId` from there
