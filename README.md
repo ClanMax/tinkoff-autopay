@@ -23,6 +23,7 @@ You have to be sure you already have permission to use this kind of function. Yo
 
 To be more clear it's work with:
 
+- `Init`
 - `AddCustomer`
 - `GetCustomer`
 - `RemoveCustomer`
@@ -30,7 +31,7 @@ To be more clear it's work with:
 - `RemoveCard`
 - `Charge`
 
-This library not implement `Init` method which you should use for make payments. You have to make it by yourself or use another library.
+This library not implement `Init` method in version 0.01. But it's implemented in 0.02.
 
 Probably in some close future I will add `FinishAuthorize` method, but not sure right now.
 
@@ -44,7 +45,7 @@ Probably in some close future I will add `FinishAuthorize` method, but not sure 
 Install library from composer
 
 ```bash
-composer require clanmax/tinkoff-autopay
+composer require clanmax/tinkoff-autopayment
 ```
 
 Connect library with you controller by using `use`
@@ -60,12 +61,12 @@ Step by step how to use `Charge`
 ### Preparing
 
 1. Add customer
-2. Request `Init` *(not included)* with `CustomerKey` and `Recurrent` parameters
+2. Request `Init` *(not included in 0.01)* with `CustomerKey` and `Recurrent` parameters
 3. Redirect user to payment form from `PaymentURL` value
 
 ### Charging
 
-1. Request `Init` *(not included)* without `CustomerKey` and `Recurrent` parameters
+1. Request `Init` *(not included in 0.01)* without `CustomerKey` and `Recurrent` parameters
 2. Save `PaymentID`
 3. Request `GetCardList` and take from card which you want to use `RebillId`
 4. Request `Charge` with `PaymentID` and `RebillId`
@@ -96,6 +97,42 @@ Make `POST` request to `Init` with two additional parameters:
 ```
 
 Where `CustomerKey` name of already added client and `Recurrent` just with `Y`
+
+For example:
+
+```php
+$payment = [
+  'OrderId'       => '2223',
+  'Amount'        => '1000',
+  'Language'      => 'ru',
+  'Reccurent'     => 'Y',
+  'CustomerKey'   => "clanmax@me.ru",
+  'Description'   => 'One month pay',
+  'Email'         => 'me@email.com',
+  'Phone'         => '+79517474837',
+  'Name'          => 'Vlad',
+  'Taxation'      => 'usn_income'
+];
+
+$items[] = [
+  'Name'  => 'Something you gonna pay',
+  'Price' => '1000',    
+  'NDS'   => 'none',
+];
+
+$bank->Init($payment,$items);
+```
+
+Return will look like this:
+
+```json
+{
+	'Success' => '1',
+	'Status' => 'NEW',
+	'PaymentURL' => "https://securepay.tinkoff.ru/new/58NbcI0s",
+	'PaymentId' => '360127329'
+}
+```
 
 ### Charge money
 
@@ -129,7 +166,7 @@ $customer = $bank->GetCustomer($CustomerKey);
 Just removing all data of user. Be sure you won't use `RebillId` of this user anymore.
 
 ```php
-$customer = $bank->RemoveCustomer($CustomerKey);
+$customer = $bank->GetCustomer($CustomerKey);
 ```
 
 ### Get card list
@@ -145,12 +182,12 @@ $cards = $bank->GetCardList($CustomerKey);
 If your client have tons of cards but you are not ready to use them instead of delete user you may just delete card. Just get card number from `GetCardList`
 
 ```php
-$cards = $bank->RemoveCard($CardId, $CustomerKey);
+$cards = $bank->RemoveCustomer($CardId, $CustomerKey);
 ```
 
 ## Find errors
 
-I would recommend always check all requests for errors by this way
+I would recommend always check all request for errors by this way
 
 ```php
 $bank->error ?:  
