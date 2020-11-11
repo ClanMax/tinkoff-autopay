@@ -8,9 +8,7 @@
       "email": "me@clanmax.ru"
     }
   ],
-  "licence": [
-    "GPL-3.0-or-later"
-  ],
+  "license": "GPL-3.0-or-later",
   "autoload": {
     "psr-4": {"ClanMax\\": "src/"}
   }
