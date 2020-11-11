@@ -2,12 +2,20 @@
   "name": "clanmax/tinkoff-autopay",
   "description": "Small library for working with automatic payment methods in Tinkoff API",
   "type": "library",
+  "keywords": [
+    "tinkoff",
+    "acquiring",
+    "reccurent"
+  ],
   "authors": [
     {
       "name": "ClanMax",
       "email": "me@clanmax.ru"
     }
   ],
+  "require": {
+        "php": "^7.1"
+  },
   "license": "GPL-3.0-or-later",
   "autoload": {
     "psr-4": {"ClanMax\\": "src/"}

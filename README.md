@@ -44,7 +44,7 @@ Probably in some close future I will add `FinishAuthorize` method, but not sure 
 Install library from composer
 
 ```bash
-composer require clanmax/tinkoff-autopayment
+composer require clanmax/tinkoff-autopay
 ```
 
 Connect library with you controller by using `use`
