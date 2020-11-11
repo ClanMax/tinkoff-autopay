@@ -4,7 +4,7 @@ Small library which help you to use methods from [Tinkoff API Documentation](htt
 
 It was made for Laravel 7.0, but basically it should work almost everywhere even not only with Laravel apps.
 
-It's using some of [Laravel-Tinkoff](https://github.com/kenvel/laravel-tinkoff) functions inside.
+It use some of [Laravel-Tinkoff](https://github.com/kenvel/laravel-tinkoff) functions inside.
 
 ## What it's doing
 
@@ -34,7 +34,7 @@ This library not implement `Init` method which you should use for make payments.
 
 Probably in some close future I will add `FinishAuthorize` method, but not sure right now.
 
-### What it will do
+## What in plans
 
 1. `FinishAuthorize` probably will work
 2. Right now library not return additional values of users (email, IP, etc). Will fix it.
@@ -44,7 +44,7 @@ Probably in some close future I will add `FinishAuthorize` method, but not sure 
 Install library from composer
 
 ```bash
-composer install clanmax/tinkoff-autopayment
+composer require clanmax/tinkoff-autopayment
 ```
 
 Connect library with you controller by using `use`
