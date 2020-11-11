@@ -41,7 +41,7 @@ composer install clanmax/tinkoff-autopayment
 Connect library with you controller by using `use`
 
 ```php
-use ClanMax/tinkoff-autopayment;
+use ClanMax\TinkoffAutopay;
 ```
 
 ## How to use
