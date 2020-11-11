@@ -48,6 +48,10 @@ class TinkoffAutopay {
     return false;
   }
 
+  /**
+   * Using method AddCustomer. Documentation https://oplata.tinkoff.ru/develop/api/autopayments/addcustomer-description/
+   * @param string $CustomerKey Name of customer. You may may use any kind of symbols
+   */
   public function AddCustomer($CustomerKey) {
     $params = [
       'CustomerKey' => $CustomerKey,
@@ -60,6 +64,10 @@ class TinkoffAutopay {
     return false;
   }
 
+  /**
+   * Using method GetCustomer. Documentation https://oplata.tinkoff.ru/develop/api/autopayments/getcustomer-description/
+   * @param string $CustomerKey Name of existing customer
+   */
   public function GetCustomer($CustomerKey) {
     $params = [
       'CustomerKey' => $CustomerKey,
@@ -72,6 +80,10 @@ class TinkoffAutopay {
     return false;
   }
 
+  /**
+   * Using method RemoveCustomer. Documentation https://oplata.tinkoff.ru/develop/api/autopayments/removecustomer-description/
+   * @param string $CustomerKey Name of existing customer
+   */
   public function RemoveCustomer($CustomerKey) {
     $params = [
       'CustomerKey' => $CustomerKey,
@@ -84,6 +96,10 @@ class TinkoffAutopay {
     return false;
   }
 
+  /**
+   * Using method GetCardList. Documentation https://oplata.tinkoff.ru/develop/api/autopayments/getcardlist-description/
+   * @param string $CustomerKey Name of existing customer
+   */
   public function GetCardList($CustomerKey) {
     $params = [
       'CustomerKey' => $CustomerKey,
@@ -96,6 +112,11 @@ class TinkoffAutopay {
     return false;
   }
 
+  /**
+   * Using method GetCardList. Documentation https://oplata.tinkoff.ru/develop/api/autopayments/getcardlist-description/
+   * @param string $CardId      CardId you may get from method GetCardList
+   * @param string $CustomerKey Name of existing customer (owner of card)
+   */
   public function RemoveCard($CardId, $CustomerKey) {
     $params = [
       'CustomerKey' => $CustomerKey,
