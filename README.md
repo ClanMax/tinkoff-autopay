@@ -129,7 +129,7 @@ $customer = $bank->GetCustomer($CustomerKey);
 Just removing all data of user. Be sure you won't use `RebillId` of this user anymore.
 
 ```php
-$customer = $bank->GetCustomer($CustomerKey);
+$customer = $bank->RemoveCustomer($CustomerKey);
 ```
 
 ### Get card list
@@ -145,7 +145,7 @@ $cards = $bank->GetCardList($CustomerKey);
 If your client have tons of cards but you are not ready to use them instead of delete user you may just delete card. Just get card number from `GetCardList`
 
 ```php
-$cards = $bank->RemoveCustomer($CardId, $CustomerKey);
+$cards = $bank->RemoveCard($CardId, $CustomerKey);
 ```
 
 ## Find errors
