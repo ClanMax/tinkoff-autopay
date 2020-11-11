@@ -3,7 +3,13 @@
 namespace ClanMax;
 
 /**
+* Tinkoff charge library
 *
+* Documentation https://oplata.tinkoff.ru/landing/develop/documentation
+*
+* @link   https://github.com/ClanMax/tinkoff-autopay
+* @version 0.01
+* @author ClanMax <me@clanmax.ru>
 */
 class TinkoffAutopay {
 

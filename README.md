@@ -30,7 +30,7 @@ To be more clear it's work with:
 - `RemoveCard`
 - `Charge`
 
-This library not implement `Init` method which you should use for make payments. You have to make it by you own or use another library.
+This library not implement `Init` method which you should use for make payments. You have to make it by yourself or use another library.
 
 Probably in some close future I will add `FinishAuthorize` method, but not sure right now.
 
@@ -60,12 +60,12 @@ Step by step how to use `Charge`
 ### Preparing
 
 1. Add customer
-2. Request `Init` *(not included)* with **`CustomerKey` and `Recurrent` parameters
+2. Request `Init` *(not included)* with `CustomerKey` and `Recurrent` parameters
 3. Redirect user to payment form from `PaymentURL` value
 
 ### Charging
 
-1. Request `Init` *(not included)* without **`CustomerKey` and `Recurrent` parameters
+1. Request `Init` *(not included)* without `CustomerKey` and `Recurrent` parameters
 2. Save `PaymentID`
 3. Request `GetCardList` and take from card which you want to use `RebillId`
 4. Request `Charge` with `PaymentID` and `RebillId`
@@ -150,7 +150,7 @@ $cards = $bank->RemoveCustomer($CardId, $CustomerKey);
 
 ## Find errors
 
-I would recommend always check all request for errors by this way
+I would recommend always check all requests for errors by this way
 
 ```php
 $bank->error ?:  
