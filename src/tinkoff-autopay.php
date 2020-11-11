@@ -1,19 +1,40 @@
 <?php
 
-namespace ClanMax\TinkoffAutopay;
+namespace ClanMax;
 
 /**
 *
 */
-class TinkoffAutopay extends {
+class TinkoffAutopay {
 
-  function __construct($url, $terminalkey, $passwordkey)
-  {
+  private $tinkoff_url;
+  private $terminal_key;
+  private $password_key;
+
+  private $url_charge;
+  private $url_addcustomer;
+  private $url_getcustomer;
+  private $url_removecustomer;
+  private $url_getcardlist;
+  private $url_removecard;
+
+  protected $error;
+  protected $response;
+  protected $response_messages;
+
+  function __construct($url, $terminalkey, $passwordkey) {
     $this->tinkoff_url = $url;
     $this->terminal_key = $terminalkey;
     $this->password_key = $passwordkey;
+    $this->initURL();
   }
 
+  /**
+   * Using method Charge. Documentation https://oplata.tinkoff.ru/develop/api/autopayments/charge-description/
+   *
+   * @param string $PaymentId Should get it from method Init
+   * @param string $RebillId  You may get it from GetCardList
+   */
   public function Charge($PaymentId, $RebillId) {
     $params = [
       'PaymentId' => $PaymentId,
@@ -21,7 +42,7 @@ class TinkoffAutopay extends {
     ];
 
     if( $this->sendRequest($this->url_charge, $params) ){
-      return $this->payment_status;
+      return $this->response_messages;
     }
 
     return false;
@@ -33,7 +54,7 @@ class TinkoffAutopay extends {
     ];
 
     if( $this->sendRequest($this->url_addcustomer, $params) ){
-      return $this->payment_status;
+      return $this->response_messages;
     }
 
     return false;
@@ -45,7 +66,7 @@ class TinkoffAutopay extends {
     ];
 
     if( $this->sendRequest($this->url_getcustomer, $params) ){
-      return $this->payment_status;
+      return $this->response_messages;
     }
 
     return false;
@@ -57,7 +78,7 @@ class TinkoffAutopay extends {
     ];
 
     if( $this->sendRequest($this->url_removecustomer, $params) ){
-      return $this->payment_status;
+      return $this->response_messages;
     }
 
     return false;
@@ -69,7 +90,7 @@ class TinkoffAutopay extends {
     ];
 
     if( $this->sendRequest($this->url_getcardlist, $params) ){
-      return $this->payment_status;
+      return $this->response_messages;
     }
 
     return false;
@@ -82,20 +103,10 @@ class TinkoffAutopay extends {
     ];
 
     if( $this->sendRequest($this->url_removecard, $params) ){
-      return $this->payment_status;
+      return $this->response_messages;
     }
 
     return false;
-  }
-
-  private function initURL() {
-    $this->tinkoff_url = $this->checkSlashOnUrlEnd($this->tinkoff_url);
-    $this->url_charge = $this->tinkoff_url . 'Charge/';
-    $this->url_addcustomer = $this->tinkoff_url . 'AddCustomer/';
-    $this->url_getcustomer = $this->tinkoff_url . 'GetCustomer/';
-    $this->url_removecustomer = $this->tinkoff_url . 'RemoveCustomer/';
-    $this->url_getcardlist = $this->tinkoff_url . 'GetCardList/';
-    $this->url_removecard = $this->tinkoff_url . 'RemoveCard/';
   }
 
   private function checkSlashOnUrlEnd($url) {
@@ -132,7 +143,7 @@ class TinkoffAutopay extends {
           return false;
           }
           else {
-            $this->responce_messages   = @$this->MessageResponse();
+            $this->response_messages   = $this->MessageResponse();
 
             return true;
           }
@@ -146,6 +157,16 @@ class TinkoffAutopay extends {
         $this->error .= "CURL init filed: $path | with args: $args";
         return false;
       }
+  }
+
+  private function initURL() {
+    $this->tinkoff_url = $this->checkSlashOnUrlEnd($this->tinkoff_url);
+    $this->url_charge = $this->tinkoff_url . 'Charge/';
+    $this->url_addcustomer = $this->tinkoff_url . 'AddCustomer/';
+    $this->url_getcustomer = $this->tinkoff_url . 'GetCustomer/';
+    $this->url_removecustomer = $this->tinkoff_url . 'RemoveCustomer/';
+    $this->url_getcardlist = $this->tinkoff_url . 'GetCardList/';
+    $this->url_removecard = $this->tinkoff_url . 'RemoveCard/';
   }
 
   private function generateToken(array $args) {
@@ -204,7 +225,8 @@ class TinkoffAutopay extends {
       'RebillId' => @$response['RebillId'],
       'CardType' => @$response['CardType'],
       'ExpDate' => @$response['ExpDate'],
+      'CustomerKey' => @$response['CustomerKey'],
     ];
+    return $response;
   }
-
 }

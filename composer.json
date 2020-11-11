@@ -1,12 +1,14 @@
 {
-    "name": "clanmax/tinkoff-autopay",
-    "description": "Small library for working with automatic payment methods in Tinkoff API",
-    "type": "library",
-    "authors": [
-        {
-            "name": "ClanMax",
-            "email": "me@clanmax.ru"
-        }
-    ],
-    "require": {}
+  "name": "clanmax/tinkoff-autopay",
+  "description": "Small library for working with automatic payment methods in Tinkoff API",
+  "type": "library",
+  "authors": [
+    {
+      "name": "ClanMax",
+      "email": "me@clanmax.ru"
+    }
+  ],
+  "autoload": {
+    "psr-4": {"ClanMax\\": "src/"}
+  }
 }
