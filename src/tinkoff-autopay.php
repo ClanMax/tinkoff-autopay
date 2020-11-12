@@ -63,8 +63,8 @@ class TinkoffAutopay {
       'OrderId'       => $payment['OrderId'],
       'Amount'        => $payment['Amount'] * $amount_multiplicator,
       'Language'      => $payment['Language'],
-      'Recurrent'     => @$item['Recurrent'],
-      'CustomerKey'   => @$item['CustomerKey'],
+      'Recurrent'     => @$payment['Recurrent'],
+      'CustomerKey'   => @$payment['CustomerKey'],
 
 
       'Description'   => $payment['Description'],
@@ -168,7 +168,8 @@ class TinkoffAutopay {
         return $this->response_messages;
       }
 
-      return false;
+      //return false;
+      return $this->error;
     }
 
     /**
@@ -310,6 +311,7 @@ class TinkoffAutopay {
         'PaymentURL' => @$response['PaymentURL'],
         'PaymentId' => @$response['PaymentId'],
       ];
-      return array_filter($data);
+      //return array_filter($data);
+      return $response;
     }
   }
