@@ -60,7 +60,7 @@ Step by step how to use `Charge`
 
 ### Preparing
 
-1. Add customer
+1. Add customer (it will be added automatically in `Init` method, btw)
 2. Request `Init` *(not included in 0.01)* with `CustomerKey` and `Recurrent` parameters
 3. Redirect user to payment form from `PaymentURL` value
 
@@ -106,7 +106,7 @@ $payment = [
   'Amount'        => '1000',
   'Language'      => 'ru',
   'Reccurent'     => 'Y',
-  'CustomerKey'   => "clanmax@me.ru",
+  'CustomerKey'   => "clanmax",
   'Description'   => 'One month pay',
   'Email'         => 'me@email.com',
   'Phone'         => '+79517474837',
@@ -127,10 +127,10 @@ Return will look like this:
 
 ```json
 {
-	'Success' => '1',
-	'Status' => 'NEW',
-	'PaymentURL' => "https://securepay.tinkoff.ru/new/58NbcI0s",
-	'PaymentId' => '360127329'
+	'Success' = '1',
+	'Status' = 'NEW',
+	'PaymentURL' = "https://securepay.tinkoff.ru/new/58NbcI0s",
+	'PaymentId' = '360127329'
 }
 ```
 
@@ -166,7 +166,7 @@ $customer = $bank->GetCustomer($CustomerKey);
 Just removing all data of user. Be sure you won't use `RebillId` of this user anymore.
 
 ```php
-$customer = $bank->GetCustomer($CustomerKey);
+$customer = $bank->RemoveCustomer($CustomerKey);
 ```
 
 ### Get card list
@@ -182,7 +182,7 @@ $cards = $bank->GetCardList($CustomerKey);
 If your client have tons of cards but you are not ready to use them instead of delete user you may just delete card. Just get card number from `GetCardList`
 
 ```php
-$cards = $bank->RemoveCustomer($CardId, $CustomerKey);
+$cards = $bank->RemoveCard($CardId, $CustomerKey);
 ```
 
 ## Find errors
