@@ -295,7 +295,9 @@ class TinkoffAutopay {
       }
       return false;
     }
-
+    /**
+     * Right now it's almost not work as it should be. Gonna fix later
+     */
     private function MessageResponse() {
       $response = json_decode($this->response, true);
 
