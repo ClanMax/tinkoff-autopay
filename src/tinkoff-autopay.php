@@ -53,9 +53,9 @@ class TinkoffAutopay {
       $payment['Items'][] = [
         'Name'      => mb_strimwidth($item['Name'], 0, $item_name_max_lenght - 1, ''),
         'Price'     => $item['Price'] * $amount_multiplicator,
-        'Quantity'  => 1,
+        'Quantity'  => $item['Amount'],
         'Amount'    => $item['Price'] * $amount_multiplicator,
-        'Tax'       => $item['NDS'],
+        'Tax'       => $item['Tax'],
       ];
     }
 
