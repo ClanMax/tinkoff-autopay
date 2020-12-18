@@ -117,7 +117,7 @@ $payment = [
 $items[] = [
   'Name'  => 'Something you gonna pay',
   'Price' => '1000',    
-  'NDS'   => 'none',
+  'Tax'   => 'none',
 ];
 
 $bank->Init($payment,$items);
@@ -133,6 +133,14 @@ Return will look like this:
 	'PaymentId' = '360127329'
 }
 ```
+
+Just to be sure Tax in Items could be:
+- osn — общая
+- usn_income — упрощенная (доходы)
+- usn_income_outcome — упрощенная (доходы минус расходы)
+- patent — патентная
+- envd — единый налог на вмененный доход
+- esn — единый сельскохозяйственный налог
 
 ### Charge money
 
