@@ -11,7 +11,6 @@ class TinkoffKey {
 
   private $payment;
   private $items;
-  private $package;
 
   function __construct() {
     $this->payment = [
@@ -33,13 +32,13 @@ class TinkoffKey {
       'Tax'   => 'none',  //НДС
     ];
 
-    $this->package = new TinkoffAutopay("https://securepay.tinkoff.ru/v2/Charge", "login", "password");
+    return $this->generateArray($this->payment, $this->items);
   }
 
   public function generateArray($payment, $items) {
     $params = array(
       'OrderId'       => $payment['OrderId'],
-      'Amount'        => $payment['Amount'] * $amount_multiplicator,
+      'Amount'        => $payment['Amount'] * 1000,
       'Language'      => $payment['Language'],
       'Recurrent'     => @$payment['Recurrent'],
       'CustomerKey'   => @$payment['CustomerKey'],
@@ -55,10 +54,25 @@ class TinkoffKey {
           'Email'     => $payment['Email'],
           'Phone'     => $payment['Phone'],
           'Taxation'  => $payment['Taxation'],
-          'Items'     => $payment['Items'],
+          'Items'     => $items,
           ],
         );
 
-      return print_r($this->package->generateToken($params));
+      return print_r($this->generateToken($params));
+      }
+
+      private function generateToken(array $args) {
+        $token = '';
+        $args['Password']    = "pass";
+        $args['TerminalKey'] = "login";
+        ksort($args);
+
+        foreach ($args as $arg) {
+          if (!is_array($arg)) {
+            $token .= $arg;
+          }
+        }
+
+        return hash('sha256', $token) . "\n";
       }
     }
