@@ -12,6 +12,9 @@ class TinkoffKey {
   private $payment;
   private $items;
 
+  /**
+   * You may make your own data in this section or send everything to generateArray
+   */
   function __construct() {
     $this->payment = [
       'OrderId'       => '2234',
@@ -35,6 +38,12 @@ class TinkoffKey {
     return $this->generateArray($this->payment, $this->items);
   }
 
+  /**
+   * Taking everything out and make hash
+   * @param  array $payment Payment details
+   * @param  array $items   Items for Receipt
+   * @return string          Token in sha256
+   */
   public function generateArray($payment, $items) {
     $params = array(
       'OrderId'       => $payment['OrderId'],
