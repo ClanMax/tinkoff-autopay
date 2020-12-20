@@ -15,13 +15,13 @@ class TinkoffKey {
   function __construct() {
     $this->payment = [
       'OrderId'       => '2234',
-      'Amount'        => '1000',
+      'Amount'        => '10',
       'Language'      => 'ru',
       'Recurrent'     => 'Y',
       'CustomerKey'   => "8",
       'Description'   => 'One month pay',
       'Email'         => 'me@clanmax.ru',
-      'Phone'         => '+79518886766',
+      'Phone'         => '+56565665',
       'Name'          => 'Vlad Meriin',
       'Taxation'      => 'usn_income'
     ];

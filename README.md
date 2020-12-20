@@ -202,3 +202,21 @@ $bank->error ?:
 ```
 
 `Error` keep some information and you may use it for show to user (but be aware).
+
+## Get token
+
+In some moment you probably will need token for testing. You may use methods in TinkoffKey class.
+
+How does it work:
+
+- Connect class
+- Change your data (or send you own)
+- Get data
+
+```php
+use ClanMax\TinkoffKey;
+
+$test = new TinkoffKey;
+
+return $test;
+```
