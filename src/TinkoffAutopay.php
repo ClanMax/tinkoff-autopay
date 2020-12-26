@@ -55,6 +55,8 @@ class TinkoffAutopay {
         'Price'     => $item['Price'] * $amount_multiplicator,
         'Quantity'  => $item['Amount'],
         'Amount'    => $item['Price'] * $amount_multiplicator,
+        'PaymentObject' => $item['PaymentObject'],
+        'PaymentMethod' => $item['PaymentMethod'],
         'Tax'       => $item['Tax'],
       ];
     }
