@@ -71,13 +71,13 @@ class TinkoffAutopay {
 
       'Description'   => $payment['Description'],
       'DATA' => [
-        'Email'     => $payment['Email'],
-        'Phone'     => $payment['Phone'],
+        'Email'     => @$payment['Email'],
+        'Phone'     => @$payment['Phone'],
         'Name'      => $payment['Name'],
         ],
         'Receipt' => [
-          'Email'     => $payment['Email'],
-          'Phone'     => $payment['Phone'],
+          'Email'     => @$payment['Email'],
+          'Phone'     => @$payment['Phone'],
           'Taxation'  => $payment['Taxation'],
           'Items'     => $payment['Items'],
           ],
