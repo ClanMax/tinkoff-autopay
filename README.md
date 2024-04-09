@@ -1,8 +1,8 @@
 # Tinkoff Autopay
 
-Small library which help you to use methods from [Tinkoff API Documentation](https://oplata.tinkoff.ru/develop/api/autopayments/).
+Small library which help you to use methods from [Tinkoff API Documentation](https://www.tinkoff.ru/kassa/dev/payments/).
 
-It was made for Laravel 7.0, but basically it should work almost everywhere even not only with Laravel apps.
+It was made for Laravel 7.0, but basically it working on Laravel 11 and almost all others PHP applications. 
 
 It use some of [Laravel-Tinkoff](https://github.com/kenvel/laravel-tinkoff) functions inside.
 
