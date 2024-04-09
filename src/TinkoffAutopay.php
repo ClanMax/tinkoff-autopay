@@ -8,7 +8,7 @@ namespace ClanMax;
 * Documentation https://oplata.tinkoff.ru/landing/develop/documentation
 *
 * @link   https://github.com/ClanMax/tinkoff-autopay
-* @version 0.02
+* @version 0.3.2
 * @author ClanMax <me@clanmax.ru>
 */
 class TinkoffAutopay {

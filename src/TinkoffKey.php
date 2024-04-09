@@ -26,7 +26,8 @@ class TinkoffKey {
       'Email'         => 'me@clanmax.ru',
       'Phone'         => '+56565665',
       'Name'          => 'Vlad Meriin',
-      'Taxation'      => 'usn_income'
+      'Taxation'      => 'usn_income',
+      'OperationInitiatorType' => '2',
     ];
 
     $this->items[] = [
@@ -58,14 +59,15 @@ class TinkoffKey {
         'Email'     => $payment['Email'],
         'Phone'     => $payment['Phone'],
         'Name'      => $payment['Name'],
-        ],
-        'Receipt' => [
-          'Email'     => $payment['Email'],
-          'Phone'     => $payment['Phone'],
-          'Taxation'  => $payment['Taxation'],
-          'Items'     => $items,
-          ],
-        );
+        'OperationInitiatorType' => @$payment['OperationInitiatorType'],
+      ],
+      'Receipt' => [
+        'Email'     => $payment['Email'],
+        'Phone'     => $payment['Phone'],
+        'Taxation'  => $payment['Taxation'],
+        'Items'     => $items,
+      ],
+    );
 
       return print_r($this->generateToken($params));
       }
