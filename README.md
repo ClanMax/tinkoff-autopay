@@ -66,10 +66,10 @@ Step by step how to use `Charge`
 
 ### Charging
 
-1. Request `Init` *(not included in 0.01)* without `CustomerKey` and `Recurrent` parameters
+1. Request `Init` without `CustomerKey` and `Recurrent` parameters
 2. Save `PaymentID`
 3. Request `GetCardList` and take from card which you want to use `RebillId`
-4. Request `Charge` with `PaymentID` and `RebillId`
+4. Request `Charge` with `PaymentID`, `RebillId`, and [OperationInitiatorType](https://www.tinkoff.ru/kassa/dev/payments/#section/Peredacha-priznaka-iniciatora-operacii)
 
 In this case user will be charged automatically and payment will be approved instantly.
 
@@ -92,7 +92,8 @@ Make `POST` request to `Init` with two additional parameters:
 ```json
 {
 "Recurrent": "Y",
-"CustomerKey": "clanmax"
+"CustomerKey": "clanmax",
+"OperationInitiatorType": "2" // just example. check https://www.tinkoff.ru/kassa/dev/payments/#section/Peredacha-priznaka-iniciatora-operacii
 }
 ```
 
