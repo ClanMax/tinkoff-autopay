@@ -74,14 +74,15 @@ class TinkoffAutopay {
         'Email'     => @$payment['Email'],
         'Phone'     => @$payment['Phone'],
         'Name'      => $payment['Name'],
-        ],
-        'Receipt' => [
-          'Email'     => @$payment['Email'],
-          'Phone'     => @$payment['Phone'],
-          'Taxation'  => $payment['Taxation'],
-          'Items'     => $payment['Items'],
-          ],
-        );
+        'OperationInitiatorType' => @$payment['OperationInitiatorType'],
+      ],
+      'Receipt' => [
+        'Email'     => @$payment['Email'],
+        'Phone'     => @$payment['Phone'],
+        'Taxation'  => $payment['Taxation'],
+        'Items'     => $payment['Items'],
+      ],
+      );
 
         if( $this->sendRequest($this->url_init, $params) ){
           return $this->response_messages;
